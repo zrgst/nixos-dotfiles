@@ -59,6 +59,7 @@ in
 
   home.packages = with pkgs; [
     # --- TOOLS --- #
+    firefox
     alacritty
     fzf
     neovim
@@ -71,6 +72,7 @@ in
     qbittorrent
     flatpak
     carburetor
+    obsidian
     
     # --- CODING TOOLS --- #
     nodejs

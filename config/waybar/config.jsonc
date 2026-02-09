@@ -15,6 +15,7 @@
     "network",
     "custom/separator",
     "backlight",
+    "custom/separator",
     "pulseaudio",
     "custom/separator",
     "memory",
