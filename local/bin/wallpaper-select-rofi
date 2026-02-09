@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/Pictures/wallpapers"
+THEME="$HOME/.config/rofi/tokyonight.rasi"
+
+if [ ! -d "$DIR" ]; then
+    exit 1
+fi
+
+choices=""
+# Vi finner alle filer i mappen
+while IFS= read -r file; do
+    # 'readlink -f' finner den ekte stien til fila, selv om det er en symlink
+    real_path=$(readlink -f "$file")
+    filename=$(basename "$file")
+    
+    # Vi sender den ekte stien som ikon-kilde
+    choices+="${filename}\x00icon\x1f${real_path}\n"
+done < <(find "$DIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \))
+
+SELECTED=$(echo -ne "$choices" | rofi -dmenu -i -p "󰸉 Wallpaper" \
+    -theme "$THEME" \
+    -theme-str 'listview { columns: 3; } element-icon { size: 150px; } element { orientation: vertical; }' \
+    -show-icons)
+
+if [ -n "$SELECTED" ]; then
+    # Vi bruker 'readlink' her også for å være helt sikker på at swww får riktig fil
+    target=$(readlink -f "$DIR/$SELECTED")
+    swww img "$target" --transition-type grow
+fi

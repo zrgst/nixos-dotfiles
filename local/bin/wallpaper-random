@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/Pictures/wallpapers"
+
+# Finn et tilfeldig bilde
+WALL=$(find "$DIR" -type f | shuf -n 1)
+
+if [ -n "$WALL" ]; then
+	# Start swww-daemon hvis den ikke allerede kjører
+	if ! pgrep -x "swww-daemon" > /dev/null; then
+		swww-daemon &
+		sleep 0.1 # En liten pause så daemon rekker å starte
+	fi
+	# Sett bakgrunnen
+	swww img "$WALL"
+fi

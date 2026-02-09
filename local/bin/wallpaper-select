@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/Pictures/wallpapers"
+
+# Lister opp filnavneme i fuzzel
+SELECTED=$(ls "$DIR" | fuzzel --dmenu -p "󰸉 Wallpaper: " -l 10)
+
+if [ -n "$SELECTED" ]; then
+	# Sjekk daemon
+	pgrep -x "swww-daemon" > /dev/null || swww-init
+
+	swww img "$DIR/$SELECTED" --transition-type wipe --transition-duration 2
+fi

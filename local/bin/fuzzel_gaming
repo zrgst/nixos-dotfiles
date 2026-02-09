@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+options=" Vesktop\n󰞇 Lutris\n󰓥 Heroic Games Launcher\n󰳗 Roblox\n󰍳 Minecraft\n󰓓 Steam"
+choice=$(echo -e "$options" | walker --dmenu "Select your game:")
+rc=$?
+
+if [ $rc -ne 0 ] || [ -z "${choice:-}" ]; then
+  "$HOME/.local/bin/walker-zrgst-menu"
+  exit 0
+fi
+
+case "$choice" in
+" Vesktop")
+  setsid -f /usr/bin/vesktop >/dev/null 2>&1
+  ;;
+"󰞇 Lutris")
+  setsid -f /usr/bin/lutris >/tmp/lutris.log 2>&1
+  ;;
+"󰓥 Heroic Games Launcher")
+  setsid -f /usr/bin/heroic >/tmp/epoch.log 2>&1
+  ;;
+"󰳗 Roblox")
+  setsid -f /usr/bin/sober >/tmp/sober.log 2>&1
+  ;;
+"󰍳 Minecraft")
+  setsid -f /usr/bin/prismlauncher >/tmp/prism.log 2>&1
+  ;;
+"󰓓 Steam")
+  setsid -f /usr/bin/steam >/tmp/steam.log 2>&1
+  ;;
+esac

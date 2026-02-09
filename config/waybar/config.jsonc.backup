@@ -1,0 +1,129 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 32,
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock","custom/cmus"],
+  "modules-right": [
+    "hyprland/language",
+    "custom/tailscale",
+    "bluetooth",
+    "network",
+    "backlight",
+    "pulseaudio",
+    "cpu",
+    "battery",
+    "tray",
+  ],
+
+  "hyprland/language": {
+    "format": "Layout: {}",
+    "format-en": "Dvorak",
+    "format-no": "QWERTY",
+  },
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": " ",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "active": "󱓻 "
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+  
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛",
+    "on-click": "xdg-terminal-exec btop"
+  },
+  "clock": {
+    "format": "{:L%A  |  %H:%M}",
+    "format-alt": "{:L%d %B | W%V %Y}",
+    "on-click-right": "chromium --app=https://calendar.google.com/calendar/u/0/r --class=google-calendar"
+  },
+
+  "network": {
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
+    "format": "{icon} {essid}",
+    "format-wifi": "{icon}",
+    "format-ethernet": " ",
+    "format-disconnected": "󰈂 ",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes} IP:{ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueberry",
+    "spacing": 1
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+    "custom/cmus": {
+    "interval": 2,
+    "exec": "~/.config/waybar/scripts/cmus-now-playing",
+    "return-type": "plain-text"
+  },
+  "custom/tailscale": {
+    "exec": "ip addr show tailscale0 > /dev/null 2>&1 && echo '󰖂 TS' || echo '󰖂 Off'",
+    "interval": 10,
+    "format": "{}",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+},
+}

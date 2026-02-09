@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+options="⏻  Power off\n  Reboot\n  Log out\n  Suspend"
+
+# --dmenu: for å lese fra stdin
+# --prompt: overskrift
+# --lines: setter høyden så den passer med valgene
+choice=$(echo -e "$options" | fuzzel --dmenu --prompt="Power: " --lines=4)
+rc=$?
+
+# Hvis du trykker Esc (rc != 0) eller ikke velge noe
+if [ $rc -ne 0 ] || [ -z "${choice:-}" ]; then
+	# Her kan du velge om du vil gå til en annen meny
+	# eller bare avslutte ( exit 0)
+	exit 0
+fi
+
+case "$choice" in
+"⏻  Power off") systemctl poweroff ;;
+"  Reboot") systemctl reboot ;;
+"  Log out") hyprctl dispatch exit ;;
+"  Suspend") systemctl suspend ;;
+esac
+

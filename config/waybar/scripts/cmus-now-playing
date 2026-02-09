@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+info=$(cmus-remote -Q 2>/dev/null)
+
+status=$(printf "%s" "$info" | awk '/status/ {print $2}')
+artist=$(printf "%s" "$info" | awk -F " " '/tag artist/ {$1=$2=""; print substr($0,3)}')
+title=$(printf "%s" "$info" | awk -F " " '/tag title/ {$1=$2=""; print substr($0,3)}')
+
+# Not running or not playing
+if [ -z "$status" ] || [ "$status" = "stopped" ]; then
+    echo ""
+    exit 0
+fi
+
+# Fallbacks
+[ -z "$artist" ] && artist="Unknown Artist"
+[ -z "$title" ]  && title="Unknown Title"
+
+if [ "$status" = "playing" ]; then
+    icon="▶"
+else
+    icon="⏸"
+fi
+
+echo "$icon $artist — $title"
+

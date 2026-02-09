@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Sett stien manuelt for å være 100% sikker
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+
+# Finn ut hvor khal faktisk ligger
+KHAL_PATH=$(which khal)
+
+if [ -z "$KHAL_PATH" ]; then
+    echo "FEIL: Fant ikke 'khal' i PATH ($PATH)"
+    echo "Prøv å kjøre: sudo pacman -S khal"
+    sleep 10
+    exit 1
+fi
+
+# Kjør khal og hold vinduet åpent hvis det krasjer
+$KHAL_PATH interactive || {
+    echo "khal krasjet eller kunne ikke starte."
+    echo "Trykk på en tast for å lukke..."
+    read -n 1
+}
