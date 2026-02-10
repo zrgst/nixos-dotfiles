@@ -40,7 +40,6 @@
         modules = [
           ./hosts/desktop/configuration.nix
           # Hardware tweaks fra nixos-hardware
-          nixos-hardware.nixosModules.common-gpu-nvidia
           nixos-hardware.nixosModules.common-pc-ssd
           nixos-hardware.nixosModules.common-cpu-amd
           

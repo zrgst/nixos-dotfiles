@@ -10,6 +10,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_zen; # Gaming-optimalisert kjerne
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.kernel.sysctl = { "vm.max_map_count" = 16777216; };
 
   # --- NVIDIA SPESIFIKT --- #
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -17,9 +18,11 @@
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
-    open = false; # Sett til true hvis du har Turing eller nyere (RTX 20-serie+)
+    open = true; # Sett til true hvis du har Turing eller nyere (RTX 20-serie+)
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    prime.sync.enable = false;
+    prime.offload.enable = false;
   };
 
   hardware.graphics = {
@@ -46,12 +49,17 @@
     allowedTCPPorts = [ 22 ];
   };
 
+  # --- FONT --- #
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   # --- DISPLAY MANAGER (tuigreet) --- #
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
         user = "greeter";
       };
     };
@@ -110,6 +118,7 @@
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "no";
+  swapDevices = [ { device = "/swapfile"; size = 32768; } ];
 
   services.pipewire = {
     enable = true;
