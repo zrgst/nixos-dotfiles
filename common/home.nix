@@ -70,6 +70,7 @@ in
     blueberry
     networkmanagerapplet
     thunar # FIKSET: xfce.thunar -> thunar
+    thunar-volman
     qbittorrent
     flatpak
     carburetor

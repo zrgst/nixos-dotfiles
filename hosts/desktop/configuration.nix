@@ -9,6 +9,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_zen; # Gaming-optimalisert kjerne
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # --- NVIDIA SPESIFIKT --- #
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -94,6 +95,14 @@
     pavucontrol
     nvtopPackages.nvidia # GPU-overvåking
   ];
+  # Aktiver udisks2 (nødvendig for å oppdage og mounte disker)
+  services.udisks2.enable = true;
+
+  # Aktiver gvfs (nødvendig for at Thunar skal kunne kommunisere med disker)
+  services.gvfs.enable = true;
+
+  # Valgfritt: Aktiver devmon (hvis du vil at ting skal mountes automatisk uten at du klikker)
+  services.devmon.enable = true;
 
   # --- DIVERSE --- #
   time.timeZone = "Europe/Oslo";
