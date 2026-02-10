@@ -67,6 +67,7 @@ in
     nil
     nixpkgs-fmt
     blueman
+    blueberry
     networkmanagerapplet
     thunar # FIKSET: xfce.thunar -> thunar
     qbittorrent

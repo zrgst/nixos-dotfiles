@@ -83,6 +83,11 @@
     pulse.enable = true;
   };
 
+  # --- BLUETOOTH --- #
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true; # Starter bluetooth automatisk ved oppstart
+  services.blueman.enable = true;
+
   # --- HARDWARE SERVICES --- #
   services.libinput.enable = true;
   services.flatpak.enable = true;
