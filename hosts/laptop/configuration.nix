@@ -39,7 +39,7 @@
     settings = {
       default_session = {
         # --time viser klokka, --remember husker sist brukte brukernavn
-	command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.dbus}/bin/dbus-run-session /run/current-system/sw/bin/Hyprland";
+	command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
         # --cmd spesifiserer hva som skal startes etter login
        
         user = "greeter";
