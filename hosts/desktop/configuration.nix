@@ -83,7 +83,9 @@
     description = "zrgst";
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
     # Lim inn din offentlige nøkkel fra laptopen her:
-    # openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3N..." ];
+    openssh.authorizedKeys.keys = [ 
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEOgGMOasuqiAsVZ8II7YWmU4dPIb1emw5jozj6mzGtw nixos-zrgst" 
+    ];
   };
 
   # --- SYSTEM-PAKKER --- #

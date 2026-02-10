@@ -113,6 +113,9 @@
     isNormalUser = true;
     description = "zrgst";
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL19ZMXWC+kjDUMVALUeLBVF/sRop8wypPdOt8CYdDOc zrgst@protonmail.com"
+    ];
   };
 
   # --- SYSTEM-PAKKER --- #
