@@ -40,7 +40,7 @@
       default_session = {
         # --time viser klokka, --remember husker sist brukte brukernavn
         # --cmd spesifiserer hva som skal startes etter login
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${dbus-run-session}/bin/dbus-run-session ${config.programs.hyprland.package}/bin/Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.dbus-run-session}/bin/dbus-run-session ${config.programs.hyprland.package}/bin/Hyprland";
         user = "greeter";
       };
     };
