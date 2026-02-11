@@ -30,6 +30,16 @@
     enable32Bit = true;
   };
 
+  # LAGRING #
+  fileSystems."/mnt/lagring" = {
+    device = "/dev/disk/by-label/lagring";
+    fsType = "ext4";
+    options = [
+      "nofail" # Forhindrer ikke boot
+      "x-systemd.automount" # Monter disken når mappen åpnes
+    ];
+  };
+
   # --- NETTVERK & SSH --- #
   networking.hostName = "desktop-zrgst";
   networking.networkmanager.enable = true;

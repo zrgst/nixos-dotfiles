@@ -60,6 +60,7 @@ in
   home.packages = with pkgs; [
     # --- TOOLS --- #
     firefox
+    chromium
     alacritty
     fzf
     neovim
