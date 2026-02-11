@@ -89,6 +89,8 @@ in
     wineWowPackages.stable # Bedre alternativ for wine i nyere Nixpkgs
     winetricks
     protonup-rs
+    vesktop
+    dotnet-runtime-wrapped # For SPT server
     
     # --- MEDIA --- #
     vlc

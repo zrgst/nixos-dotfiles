@@ -124,6 +124,11 @@
   # Valgfritt: Aktiver devmon (hvis du vil at ting skal mountes automatisk uten at du klikker)
   services.devmon.enable = true;
 
+  # UDEV #
+  services.udev.packages = [ pkgs.vial ];
+  
+  hardware.keyboard.qmk.enable = true;
+
   # --- DIVERSE --- #
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_US.UTF-8";
