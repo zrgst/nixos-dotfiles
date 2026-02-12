@@ -90,7 +90,7 @@ in
     winetricks
     protonup-rs
     vesktop
-    dotnet-runtime-wrapped # For SPT server
+    dotnetCorePackages.runtime_9_0-bin # For SPT server
     
     # --- MEDIA --- #
     vlc
