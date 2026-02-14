@@ -80,6 +80,7 @@ in
     # --- CODING TOOLS --- #
     nodejs
     gcc
+    bat
     
     # --- GAMING --- #
     mangohud
