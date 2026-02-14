@@ -75,7 +75,7 @@ in
     qbittorrent
     flatpak
     carburetor
-    obsidian
+    lazygit
     
     # --- CODING TOOLS --- #
     nodejs
