@@ -92,6 +92,7 @@ in
     protonup-rs
     vesktop
     dotnetCorePackages.runtime_9_0-bin # For SPT server
+    protonup-rs
     
     # --- MEDIA --- #
     vlc
