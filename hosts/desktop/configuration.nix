@@ -43,6 +43,21 @@
     ];
   };
 
+  # Polkit auth agent
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "gnome-polkit-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
   # --- NETTVERK & SSH --- #
   networking.hostName = "desktop-zrgst";
   networking.networkmanager.enable = true;
@@ -119,6 +134,7 @@
     pavucontrol
     nvtopPackages.nvidia # GPU-overvåking
     input-remapper
+    polkit_gnome
   ]) ++ [
     # Pakker som ikke er i "pkgs" her:
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
