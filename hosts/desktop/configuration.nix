@@ -118,6 +118,7 @@
     nh
     pavucontrol
     nvtopPackages.nvidia # GPU-overvåking
+    input-remapper
   ]) ++ [
     # Pakker som ikke er i "pkgs" her:
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
@@ -154,6 +155,9 @@
   # Gaming tweaks
   programs.steam.enable = true;
   programs.gamemode.enable = true;
+
+  # Joystick remapper
+  services.input-remapper.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
