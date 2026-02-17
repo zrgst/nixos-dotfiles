@@ -110,7 +110,7 @@
   };
 
   # --- SYSTEM-PAKKER --- #
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     # Pakker fra "pkgs" her:
     vim
     wget
@@ -121,6 +121,7 @@
   ]) ++ [
     # Pakker som ikke er i "pkgs" her:
     inputs.nix-citizen.packages.${pkgs.system}.star-citizen
+    inputs.nix-citizen.packages.${pkgs.system}.lug-helper
   ];
 
   # Aktiver udisks2 (nødvendig for å oppdage og mounte disker)
