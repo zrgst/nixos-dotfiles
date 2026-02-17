@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -10,7 +10,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_zen; # Gaming-optimalisert kjerne
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.kernel.sysctl = { "vm.max_map_count" = 16777216; };
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 16777216; 
+    "fs.file-max" = 524288;
+  };
 
   # --- NVIDIA SPESIFIKT --- #
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -108,13 +111,18 @@
 
   # --- SYSTEM-PAKKER --- #
   environment.systemPackages = with pkgs; [
+    # Pakker fra "pkgs" her:
     vim
     wget
     git
     nh
     pavucontrol
     nvtopPackages.nvidia # GPU-overvåking
+  ]) ++ [
+    # Pakker som ikke er i "pkgs" her:
+    inputs.nix-citizen.packages.${pkgs.system}.star-citizen
   ];
+
   # Aktiver udisks2 (nødvendig for å oppdage og mounte disker)
   services.udisks2.enable = true;
 

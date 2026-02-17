@@ -8,12 +8,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-citizen.url = "github:LovingMelody/nix-citizen";
+    nix-citizen.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs: {
     nixosConfigurations = {
       # --- LAPTOP (AMD) --- #
-      laptop = nixpkgs.lib.nixosSystem {
+      "laptop-zrgst" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -34,7 +36,7 @@
       };
 
       # --- DESKTOP (NVIDIA) --- #
-      desktop = nixpkgs.lib.nixosSystem {
+      "desktop-zrgst" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
