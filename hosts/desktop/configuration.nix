@@ -33,6 +33,17 @@
     enable32Bit = true;
   };
 
+  # Aktiver GNOME Keyring (nødvendig for å lagre passord)
+  services.gnome.gnome-keyring.enable = true;
+
+  # Aktiver XDG Portals (broen mellom Flatpak og systemet)
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
+    config.hyprland.default = ["hyprland" "gtk"];
+  };
+
   # LAGRING #
   fileSystems."/mnt/lagring" = {
     device = "/dev/disk/by-label/lagring";
@@ -127,6 +138,8 @@
     inputs.nix-citizen.packages.${pkgs.system}.lug-helper
   ];
 
+  services.flatpak.enable = true;
+
   # Aktiver udisks2 (nødvendig for å oppdage og mounte disker)
   services.udisks2.enable = true;
 
@@ -157,6 +170,7 @@
   # Gaming tweaks
   programs.steam.enable = true;
   programs.gamemode.enable = true;
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
